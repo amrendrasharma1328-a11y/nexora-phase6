@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+coverage/
+
+# OSM cache (large downloaded data)
+backend/data/cache/*
+!backend/data/cache/.gitkeep
+
+# Phase 6 workspace data (saved routes, history). Contains user data: never commit.
+backend/data/workspaces/

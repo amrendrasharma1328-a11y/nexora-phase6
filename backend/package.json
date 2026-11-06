@@ -1,0 +1,22 @@
+{
+  "name": "nexora-backend",
+  "version": "0.6.0",
+  "private": true,
+  "type": "module",
+  "description": "NEXORA backend (Express, pure JavaScript)",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "vitest run",
+    "bench": "node scripts/benchmark.js",
+    "fetch-osm": "node scripts/fetch-osm.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0",
+    "vitest": "^2.1.8"
+  }
+}

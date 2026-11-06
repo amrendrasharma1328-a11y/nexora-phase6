@@ -1,0 +1,118 @@
+/* Theme palettes. Channel triplets (R G B) so Tailwind can apply opacity: rgb(var(--nx-x-rgb) / 0.5).
+   Values mirror src/design/tokens.js `themes` (a test enforces this). */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --nx-bg-rgb: 2 3 3;
+  --nx-surface-rgb: 9 14 11;
+  --nx-primary-rgb: 56 255 142;
+  --nx-secondary-rgb: 255 101 216;
+  --nx-cyan-rgb: 101 248 255;
+  --nx-ink-rgb: 248 255 250;
+  --nx-body-rgb: 211 219 213;
+  --nx-muted-rgb: 194 203 197;
+  --nx-border-rgb: 48 76 59;
+  --nx-control-rgb: 101 149 121;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --nx-bg-rgb: 242 247 243;
+  --nx-surface-rgb: 255 255 255;
+  --nx-primary-rgb: 11 122 62;
+  --nx-secondary-rgb: 179 18 127;
+  --nx-cyan-rgb: 0 106 122;
+  --nx-ink-rgb: 6 19 11;
+  --nx-body-rgb: 34 48 39;
+  --nx-muted-rgb: 67 85 74;
+  --nx-border-rgb: 170 194 178;
+  --nx-control-rgb: 79 122 98;
+}
+
+:root[data-theme='contrast'] {
+  color-scheme: dark;
+  --nx-bg-rgb: 0 0 0;
+  --nx-surface-rgb: 0 0 0;
+  --nx-primary-rgb: 93 255 159;
+  --nx-secondary-rgb: 255 139 230;
+  --nx-cyan-rgb: 143 249 255;
+  --nx-ink-rgb: 255 255 255;
+  --nx-body-rgb: 255 255 255;
+  --nx-muted-rgb: 230 230 230;
+  --nx-border-rgb: 143 181 159;
+  --nx-control-rgb: 255 255 255;
+}
+
+:root {
+  /* Resolved colors (used by plain CSS and Leaflet overrides) */
+  --nx-bg: rgb(var(--nx-bg-rgb));
+  --nx-surface: rgb(var(--nx-surface-rgb));
+  --nx-primary: rgb(var(--nx-primary-rgb));
+  --nx-secondary: rgb(var(--nx-secondary-rgb));
+  --nx-cyan: rgb(var(--nx-cyan-rgb));
+  --nx-ink: rgb(var(--nx-ink-rgb));
+  --nx-body: rgb(var(--nx-body-rgb));
+  --nx-muted: rgb(var(--nx-muted-rgb));
+  --nx-border: rgb(var(--nx-border-rgb));
+  --nx-control: rgb(var(--nx-control-rgb));
+
+  /* Typography */
+  --nx-font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --nx-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --nx-label-size: 0.6875rem;
+  --nx-label-tracking: 0.12em;
+
+  /* Spacing */
+  --nx-space-1: 0.25rem;
+  --nx-space-2: 0.5rem;
+  --nx-space-3: 0.75rem;
+  --nx-space-4: 1rem;
+  --nx-space-6: 1.5rem;
+  --nx-space-8: 2rem;
+  --nx-sidebar-width: 16rem;
+  --nx-header-height: 4rem;
+
+  /* Borders (sharp geometry) */
+  --nx-border-width: 1px;
+  --nx-rail-width: 2px;
+  --nx-radius: 0;
+
+  /* Shadows & focus */
+  --nx-shadow-glow-green: 0 0 0 1px var(--nx-primary), 0 0 12px rgb(var(--nx-primary-rgb) / 0.25);
+  --nx-shadow-glow-cyan: 0 0 0 1px var(--nx-cyan), 0 0 12px rgb(var(--nx-cyan-rgb) / 0.2);
+  --nx-focus-ring: 0 0 0 2px var(--nx-bg), 0 0 0 4px var(--nx-primary);
+
+  /* Transitions */
+  --nx-transition-fast: 120ms ease-out;
+  --nx-transition-base: 200ms ease-out;
+}
+
+/* Motion. The Settings page sets data-motion="reduce" | "full" on <html>.
+   Before that runs (or with "system"), the OS preference decides. Spinners keep turning:
+   they signal progress and are the only motion left in reduced mode. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) {
+    --nx-transition-fast: 0ms;
+    --nx-transition-base: 0ms;
+  }
+  :root:not([data-motion='full']) *:not(.animate-spin),
+  :root:not([data-motion='full']) *:not(.animate-spin)::before,
+  :root:not([data-motion='full']) *:not(.animate-spin)::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-motion='reduce'] {
+  --nx-transition-fast: 0ms;
+  --nx-transition-base: 0ms;
+}
+:root[data-motion='reduce'] *:not(.animate-spin),
+:root[data-motion='reduce'] *:not(.animate-spin)::before,
+:root[data-motion='reduce'] *:not(.animate-spin)::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
